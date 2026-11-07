@@ -1,0 +1,27 @@
+# Local state and logs
+*.log
+logs/
+.local/
+
+# Secrets (never commit)
+.env
+.env.*
+ai-env
+*.pem
+*.key
+id_ed25519*
+id_rsa*
+
+# Test artifacts
+tests/tmp/
+*.tmp
+*.bak
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Claude Code local settings
+.claude/settings.local.json
