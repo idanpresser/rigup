@@ -143,6 +143,6 @@ for id in "${ORDER[@]}"; do
 done
 echo; echo "Log: $LOG_FILE"
 [[ -s $STATE_DIR/reboot-needed ]] && warn "Reboot required: $(sort -u "$STATE_DIR/reboot-needed" | paste -sd, -)"
-[[ -s $STATE_DIR/relogin-needed ]] && warn "Log out/in (or run 'newgrp docker') for: $(sort -u "$STATE_DIR/relogin-needed" | paste -sd, -)"
+[[ -s $STATE_DIR/relogin-needed ]] && warn "Log out and back in for: $(sort -u "$STATE_DIR/relogin-needed" | paste -sd, -)"
 echo "Open a new shell (or: source ~/.bashrc) to pick up PATH changes."
 exit $(( fails > 0 ))

@@ -7,5 +7,5 @@
 # @default   on
 is_installed() { has_cmd wrangler; }
 version() { wrangler --version 2>/dev/null | head -n1; }
-install() { npm_global wrangler; }
-update() { npm_global wrangler@latest; }
+install() { npm_global --allow=wrangler,esbuild,workerd wrangler; }
+update() { npm_global --allow=wrangler,esbuild,workerd wrangler@latest; }

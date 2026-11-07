@@ -6,5 +6,5 @@
 # @requires  node-fnm
 # @default   on
 is_installed() { has_cmd pnpm; }
-install() { npm_global pnpm; }
-update() { npm_global pnpm@latest; }
+install() { npm_global --allow=pnpm pnpm; }
+update() { npm_global --allow=pnpm pnpm@latest; }

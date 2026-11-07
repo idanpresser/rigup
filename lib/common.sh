@@ -103,8 +103,15 @@ refresh_path() {
 need_reboot() { echo "$1" >>"$STATE_DIR/reboot-needed"; }
 need_relogin() { echo "$1" >>"$STATE_DIR/relogin-needed"; }
 
-# npm_global PKG... : install/upgrade global npm packages into the stable prefix
-npm_global() { has_cmd npm || { err "npm not found (enable the node-fnm module)"; return 1; }; run npm install -g "$@"; }
+# npm_global [--allow=a,b] PKG... : install/upgrade global npm packages.
+# Newer npm blocks install scripts of global packages; --allow=a,b lists the packages whose
+# scripts must run (the CLI itself plus any dependency that downloads a binary, e.g. esbuild,workerd).
+npm_global() {
+  has_cmd npm || { err "npm not found (enable the node-fnm module)"; return 1; }
+  local extra=()
+  if [[ ${1:-} == --allow=* ]]; then extra=("--allow-scripts=${1#--allow=}"); shift; fi
+  run npm install -g "${extra[@]}" "$@"
+}
 
 # gh_latest_asset OWNER/REPO REGEX : print download URL of first matching release asset
 gh_latest_asset() {

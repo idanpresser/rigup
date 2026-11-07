@@ -8,5 +8,5 @@
 is_installed() { dpkg -s build-essential curl git jq unzip gnupg pciutils >/dev/null 2>&1; }
 install() {
   apt_install curl wget git build-essential gnupg ca-certificates unzip zip jq pciutils \
-    software-properties-common apt-transport-https whiptail lsb-release
+    apt-transport-https whiptail lsb-release
 }
